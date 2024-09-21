@@ -1,4 +1,4 @@
-version: '3.7'
+version: '3.9'
 services:
   djangoserver:
     build: .
@@ -6,4 +6,14 @@ services:
       - .:/app
     ports:
       - '8080:80'
+    depends_on:
+      - mydb
+  mydb:
+    image: postgres
+    restart: always
+    shm_size: 128mb
+    environment:
+      - POSTGRES_PASSWORD: mypassword
+
+
 
